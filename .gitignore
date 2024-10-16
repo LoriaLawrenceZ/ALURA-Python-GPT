@@ -1,0 +1,7 @@
+# Não enviar arquivo de configuração de ambiente (environment)
+.env
+*.env
+
+# Não enviar arquivos de configuração jetbrains
+.idea
+*.iml
