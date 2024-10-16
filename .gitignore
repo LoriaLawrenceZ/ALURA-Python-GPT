@@ -5,3 +5,6 @@
 # Não enviar arquivos de configuração jetbrains
 .idea
 *.iml
+
+# Não enviar diretório de configuração do ambiente virtual de desenvolvimento (venv)
+curso_1_openai/
