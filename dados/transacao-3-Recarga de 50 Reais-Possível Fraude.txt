@@ -1,0 +1,9 @@
+Recomendação: 
+
+1. Notificar o Cliente: Diante da suspeição de uma possível fraude, é altamente recomendável notificar o cliente imediatamente sobre a transação suspeita para confirmação. Caso o cliente negue a transação, o próximo passo apropriado seria contatar o setor anti-fraude.
+
+2. Acionar setor Anti-Fraude: Se a transação é identificada como potencialmente fraudulenta, é crucial a intervenção do setor de Anti-Fraude. Eles devem tomar medidas para segurar o pagamento e obter informações adicionais para validar a transação.
+
+3. Realizar Verificação Manual: Neste caso, uma investigação mais aprofundada pode ser necessária. A verificação manual poderia revelar se a fraude é de fato válida ou apenas um falso-positivo. Esta etapa também irá revelar o tipo de fraude.
+
+Classificação do tipo de fraude: Caso a transação seja confirmada como fraudulenta após a verificação, a fraude poderia ser classificada como "Fraude de Carding". Esta categoria se aplica quando existem múltiplas transações com o mesmo valor em um curto espaço de tempo, sugerindo o possível uso de cartões clonados.

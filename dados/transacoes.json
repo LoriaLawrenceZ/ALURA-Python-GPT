@@ -6,8 +6,7 @@
             "Horário": "2023-11-21 21:53:28",
             "Valor": "R$1103",
             "Produto": "Artigo Esportivo",
-            "Localização": "Porto Alegre - RS (Brasil)",
-            "Status": "Possível Fraude"
+            "Localização": "Porto Alegre - RS (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -15,8 +14,7 @@
             "Horário": "2023-11-21 21:39:28",
             "Valor": "R$21",
             "Produto": "Bolos",
-            "Localização": "Porto Alegre - RS (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "Porto Alegre - RS (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -24,8 +22,7 @@
             "Horário": "2023-11-21 21:35:28",
             "Valor": "R$50",
             "Produto": "Recarga de 50 Reais",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -33,8 +30,7 @@
             "Horário": "2023-11-15 21:35:28",
             "Valor": "R$180",
             "Produto": "Jogo Digital",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -42,8 +38,7 @@
             "Horário": "2023-11-10 15:54:28",
             "Valor": "R$152",
             "Produto": "Jogo Digital",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -51,8 +46,7 @@
             "Horário": "2023-11-10 13:48:28",
             "Valor": "R$11",
             "Produto": "Bolos",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -60,8 +54,7 @@
             "Horário": "2023-11-10 13:50:28",
             "Valor": "R$50",
             "Produto": "Recarga de 50 Reais",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Débito",
@@ -69,8 +62,7 @@
             "Horário": "2023-11-10 09:36:28",
             "Valor": "R$25",
             "Produto": "Café da Manhã",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -78,8 +70,7 @@
             "Horário": "2023-11-10 08:47:28",
             "Valor": "R$96",
             "Produto": "Livro OpenAI",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         },
         {
             "Tipo Transação": "Crédito",
@@ -87,8 +78,7 @@
             "Horário": "2023-11-09 14:48:28",
             "Valor": "R$184",
             "Produto": "Jogo de Estratégia",
-            "Localização": "São Paulo - SP (Brasil)",
-            "Status": "Aprovado"
+            "Localização": "São Paulo - SP (Brasil)"
         }
     ]
 }
