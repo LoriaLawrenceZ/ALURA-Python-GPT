@@ -7,4 +7,4 @@
 *.iml
 
 # Não enviar diretório de configuração do ambiente virtual de desenvolvimento (venv)
-curso_2_openai/
+chatbot/
