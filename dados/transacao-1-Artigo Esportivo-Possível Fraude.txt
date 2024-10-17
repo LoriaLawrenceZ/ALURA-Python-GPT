@@ -1,7 +1,0 @@
-Recomendação: "Acionar setor Anti-Fraude" & "Realizar Verificação Manual".
-
-Classificação da Suspeita de Fraude: Alto Risco - Atividade de Compra Anormal.
-
-Detalhes: A transação ID 1, tipificada como crédito e feita no estabelecimento Esporte C, na data de 2023-11-21 às 21:53:28, com valor de R$1103, para a compra de 'Artigo Esportivo' em localização Porto Alegre - RS (Brasil), apresenta possíveis indícios de fraude. O sinal de alerta é o alto valor da compra em comparação à média de preços dos produtos do fornecedor, que é geralmente mais baixa. 
-
-Sugere-se acionar o setor Anti-Fraude para uma análise mais aprofundada da situação e uma verificação manual das atividades anteriores do comprador no sistema. Para maior segurança, indicamos a verificação e confirmação da identidade do comprador antes de proceder com a aprovação da transação.
