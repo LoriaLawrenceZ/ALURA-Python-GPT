@@ -6,6 +6,7 @@ from time import sleep
 from helpers import *
 from selecionar_documento import *
 from selecionar_persona import *
+from assistente_ecomart import *
 
 load_dotenv()
 
@@ -15,46 +16,36 @@ model = "gpt-4"
 app = Flask(__name__)
 app.secret_key = 'alura'
 
+assistente = criar_assitente()
+thread = criar_thread()
+
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
-    personalidade = personas[selecionar_persona(prompt)]
-    contexto = selecionar_contexto(prompt)
-    documento_selecionado = selecionar_documento(contexto)
 
     while True:
         try:
-            system_prompt = f"""
-            Você é um chatbot de atendimento a clientes de um e-commerce. 
-            Você não deve responder perguntas que não sejam dados do e-commerce informado!
-            
-            Você deve gerar respostas utilizando o contexto abaixo
-            # Contexto
-            {contexto}
-            
-            Você deve adotar a Persona abaixo
-            
-            # Persona
-            {personalidade}
-            """
-            response = client.chat.completions.create(
-                messages=[
-                    {
-                        "role": "system",
-                        "content": system_prompt
-                    },
-                    {
-                        "role": "user",
-                        "content": prompt
-                    }
-                ],
-                temperature=1,
-                max_tokens=256,
-                top_p=1,
-                frequency_penalty=0,
-                presence_penalty=0,
-                model=model)
-            return response
+            client.beta.threads.messages.create(
+                thread_id = thread.id,
+                role = "user",
+                content = prompt
+            )
+
+            run = client.beta.threads.runs.create(
+                thread_id = thread.id,
+                assistant_id = assistente.id
+            )
+
+            while run.status != "completed":
+                run = client.beta.threads.runs.retrieve(
+                    thread_id = thread.id,
+                    run_id = run.id
+                )
+
+            historico = list(client.beta.threads.messages.list(thread_id = thread.id).data)
+            resposta = historico[0]
+            return resposta
+
         except Exception as erro:
             repeticao += 1
             if repeticao >= maximo_tentativas:
@@ -67,7 +58,7 @@ def bot(prompt):
 def chat():
     user_prompt = request.json["msg"]
     response = bot(user_prompt)
-    texto_resposta = response.choices[0].message.content
+    texto_resposta = response.content[0].text.value
     return texto_resposta
 
 

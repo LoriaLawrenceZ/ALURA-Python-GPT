@@ -14,6 +14,11 @@ CURSO ALURA | Python e GPT: crie seu chatbot com IA
   - [3. Exibição da mensagem de resposta que vem da API](#3-exibição-da-mensagem-de-resposta-que-vem-da-api)
 - [02. Refinando o Contexto de um Chatbot](#02-refinando-o-contexto-de-um-chatbot)
   - [Personas e Chatbots](#personas-e-chatbots)
+    - [Por que personas são importantes para chatbots?](#por-que-personas-são-importantes-para-chatbots)
+    - [Como a OpenAI facilita a criação de personas?](#como-a-openai-facilita-a-criação-de-personas)
+    - [Experimentando personas](#experimentando-personas)
+- [03. Gerenciando o Histórico do Chatbot com um Assistente](#03-gerenciando-o-histórico-do-chatbot-com-um-assistente)
+  - [Apagando uma Thread](#apagando-uma-thread)
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 
@@ -186,7 +191,96 @@ Para aprofundar seu conhecimento sobre a criação de personas para chatbots e c
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 
-# 03.
+# 03. Gerenciando o Histórico do Chatbot com um Assistente
+
+## Apagando uma Thread
+
+Trabalhar com a API da OpenAI envolve não apenas a criação de assistentes e threads, mas também o gerenciamento responsável desses recursos. Isso inclui a capacidade de apagar threads e assistentes por motivos de privacidade, segurança dos dados ou eficiência do sistema. Vamos explorar esse processo com um exemplo prático.
+
+1. **Criação de um Assistente**
+
+Primeiro, criamos um assistente chamado "Data Visualizer 3", que é capaz de criar visualizações de dados baseadas em um arquivo `.csv`.
+
+```python
+from openai import OpenAI
+client = OpenAI(api_key="SUA_CHAVE_API")
+file = client.files.create(
+  file=open("data.csv", "rb"),
+  purpose='assistants'
+)
+assistant = client.beta.assistants.create(
+  name="Robô de finanças pessoais",
+  description="Um assistente excelente em criar projeções financeiras",
+  instructions="Você é um assistente amigável.",
+  model="gpt-4-1106-preview",
+  tools=[{"type": "code_interpreter"}],
+  file_ids=[file.id]
+)
+```
+
+Quando criamos um assistente é comum associarmos uma thread para manter o histórico de mensagens para este assistente. O fluxo de funcionamento inclui o processo de receber uma mensagem do usuário, processar esta informação em uma thread por meio de uma execução. Após concluída a execução o assistente devolve a resposta para ser consumida.
+
+![img.png](README_assets/img5.png)
+
+2. **Criação e gerenciamento de threads e mensagens**
+
+Após a criação do assistente, criamos uma thread para a sessão de conversa entre o assistente e um usuário.
+
+```python
+thread = client.beta.threads.create(
+  messages=[
+    {
+      "role": "user",
+      "content": "Crie 3 visualizações de dados com base nas tendências deste arquivo.",
+      "file_ids": [file.id]
+    }
+  ]
+)
+```
+
+3. **Executando o assistente no thread (Run)**
+
+Executamos o assistente no thread criado para processar a mensagem do usuário.
+
+```python
+run = client.beta.threads.runs.create(
+  thread_id=thread.id,
+  assistant_id=assistant.id
+)
+```
+
+4. **Verificação do status da execução**
+
+Incluímos um loop para verificar o status da execução até que seja completada.
+
+```python
+STATUS_COMPLETED = "completed"
+while run.status != STATUS_COMPLETED:
+    run = client.beta.threads.runs.retrieve(
+        thread_id=thread.id,
+        run_id=run.id
+    )
+    print(run.status)
+```
+
+![img.png](README_assets/img6.png)
+
+Quando um assistente vai processar uma mensagem vinculada a uma thread, faz-se necessário criar uma execução (run). Esta execução permanece no status de "in_progress" até que a resposta seja entregue pelo assistente. No entanto, pode acontecer de esta solicitação expirar, falhar ou ser cancelada. Apenas quando esta execução alcança o status de completa existe a garantia de que a resposta foi elaborada pelo assistente. Ainda, quando utilizamos ferramentas (como Functions Calling, que serão exploradas na Aula 4), é necessário entregar uma resposta ao assistente, que permanece no status de "requires_action".
+
+5. **Recuperando a resposta e apagando recursos**
+
+Após a execução, recuperamos a resposta do assistente e procedemos com a exclusão do assistente e do thread.
+
+```python
+historico = list(client.beta.threads.messages.list(thread_id=thread.id).data)
+resposta = historico[0]
+print("Resposta: ", resposta)
+
+client.beta.assistants.delete(assistant_id=assistant.id)
+client.beta.threads.delete(thread_id=thread.id)
+```
+Este processo demonstra a utilização da API da OpenAI para criar e gerenciar assistentes e threads, e como apagá-los de forma responsável. Lembre-se de proteger a chave API e gerenciar os dados cuidadosamente, especialmente em ambientes de produção.
+
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 <p align="right"><a href="#top-readme">(back to top)</a></p>
