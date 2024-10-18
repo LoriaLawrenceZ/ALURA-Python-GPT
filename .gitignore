@@ -1,6 +1,7 @@
 # Não enviar arquivo de configuração de ambiente (environment)
 .env
 *.env
+__pycache__/
 
 # Não enviar arquivos de configuração jetbrains
 .idea
