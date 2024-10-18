@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 import os
 from time import sleep
 from helpers import *
+from selecionar_documento import *
+from selecionar_persona import *
 
 load_dotenv()
 
@@ -13,12 +15,12 @@ model = "gpt-4"
 app = Flask(__name__)
 app.secret_key = 'alura'
 
-contexto = carrega("dados/ecomart.txt")
-
-
 def bot(prompt):
     maximo_tentativas = 1
     repeticao = 0
+    personalidade = personas[selecionar_persona(prompt)]
+    contexto = selecionar_contexto(prompt)
+    documento_selecionado = selecionar_documento(contexto)
 
     while True:
         try:
@@ -27,9 +29,13 @@ def bot(prompt):
             Você não deve responder perguntas que não sejam dados do e-commerce informado!
             
             Você deve gerar respostas utilizando o contexto abaixo
-            
             # Contexto
             {contexto}
+            
+            Você deve adotar a Persona abaixo
+            
+            # Persona
+            {personalidade}
             """
             response = client.chat.completions.create(
                 messages=[

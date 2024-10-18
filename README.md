@@ -12,6 +12,8 @@ CURSO ALURA | Python e GPT: crie seu chatbot com IA
   - [1. Tratamento da entrada](#1-tratamento-da-entrada)
   - [2. Exibição da mensagem que foi digitada na conversa](#2-exibição-da-mensagem-que-foi-digitada-na-conversa)
   - [3. Exibição da mensagem de resposta que vem da API](#3-exibição-da-mensagem-de-resposta-que-vem-da-api)
+- [02. Refinando o Contexto de um Chatbot](#02-refinando-o-contexto-de-um-chatbot)
+  - [Personas e Chatbots](#personas-e-chatbots)
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 
@@ -140,7 +142,51 @@ Na imagem abaixo está um exemplo de estado da página enquanto a resposta está
 Isso encerra o código de integração com o back-end. Podemos perceber que, de certa forma, o código lembra um pouco aquele que existe no back-end em Python.
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
+
+# 02. Refinando o Contexto de um Chatbot
+
+## Personas e Chatbots
+
+A integração de personas com chatbots nos permite construir sistemas interativos e personalizados para interagir com usuários reais. As personas ajudam a definir a voz, o estilo e a abordagem do chatbot, tornando-o mais engajante e eficaz na interação com os usuários. No contexto da OpenAI, a personalização do chatbot através de personas pode ser implementada utilizando as capacidades avançadas da API do GPT para criar experiências de conversação mais ricas e humanizadas.
+
+### Por que personas são importantes para chatbots?
+
+Personas bem definidas permitem que os chatbots se comuniquem de maneira mais natural e coerente com seu público-alvo. Isso não apenas melhora a experiência do usuário, mas também garante que o chatbot esteja alinhado com os objetivos e a marca da empresa.
+
+### Como a OpenAI facilita a criação de personas?
+
+A API do GPT da OpenAI oferece a flexibilidade necessária para integrar diferentes estilos de comunicação e personalidades em chatbots. Utilizando o [Playground da OpenAI](https://platform.openai.com/playground/chat?model=gpt-4&models=gpt-4o) ou a API diretamente, é possível definir instruções específicas para moldar a personalidade do chatbot, adequando-o ao contexto desejado.
+
+### Experimentando personas
+
+1. **Em "System" do Playground da OpenAI (ou via API) insira**:
+
+`Você é um chatbot com a personalidade de um atendente experiente e amigável de uma loja de eletrônicos. Você fornece informações detalhadas sobre produtos e oferece suporte aos clientes com dúvidas.`
+
+**Exemplo de persona**
+
+```javascript
+"personas": [
+    {
+      "name": "Atendente Eletrônicos",
+      "description": "Um atendente experiente e amigável de uma loja de eletrônicos. Conhece profundamente os produtos e está sempre pronto para ajudar os clientes com informações e suporte."
+    }
+  ]
+```
+
+2. **Em "User" insira perguntas específicas relacionadas a produtos de eletrônicos**:
+
+`Qual é o melhor smartphone para fotografia atualmente?`
+
+3. **A OpenAI gerará respostas alinhadas com a persona definida**:
+
+`O Samsung Galaxy S21 Ultra é uma ótima opção para fotografia, com seu sistema avançado de câmeras e recursos de alta qualidade.`
+
+Para aprofundar seu conhecimento sobre a criação de personas para chatbots e como a OpenAI pode ser utilizada neste contexto, confira a [documentação da API da OpenAI](https://platform.openai.com/docs/overview) para entender como personalizar chatbots.
+
 <p align="right"><a href="#top-readme">(back to top)</a></p>
+
+# 03.
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 <p align="right"><a href="#top-readme">(back to top)</a></p>
