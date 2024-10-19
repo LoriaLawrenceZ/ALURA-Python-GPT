@@ -43,7 +43,7 @@ def pegar_json():
     if not os.path.exists(filename):
         thread_id = criar_thread()
         file_id_list = criar_lista_ids()
-        assistant_id = criar_assitente()
+        assistant_id = criar_assistente(file_id_list)
         data = {
             "assistant_id": assistant_id.id,
             "thread_id": thread_id.id,
@@ -65,7 +65,7 @@ def pegar_json():
 def criar_thread():
     return client.beta.threads.create()
 
-def criar_assitente(file_ids=[]):
+def criar_assistente(file_ids=[]):
     assistente = client.beta.assistants.create(
         name="Atendente EcoMart",
         instructions = f"""
@@ -74,8 +74,7 @@ def criar_assitente(file_ids=[]):
             Além disso, acesse os arquivos associados a você e a thread para responder as perguntas.
         """,
         model = model,
-        tools = minhas_tools,
-        file_ids = file_ids
+        tools = minhas_tools
     )
 
     return assistente
