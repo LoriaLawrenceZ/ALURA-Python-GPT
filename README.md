@@ -19,6 +19,8 @@ CURSO ALURA | Python e GPT: crie seu chatbot com IA
     - [Experimentando personas](#experimentando-personas)
 - [03. Gerenciando o Histórico do Chatbot com um Assistente](#03-gerenciando-o-histórico-do-chatbot-com-um-assistente)
   - [Apagando uma Thread](#apagando-uma-thread)
+- [04. Refatorando o Código e Incluindo Ferramentas: Function Calling](#04-refatorando-o-código-e-incluindo-ferramentas-function-calling)
+  - [Criando uma function com a OpenAI](#criando-uma-function-com-a-openai)
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
 
@@ -282,7 +284,79 @@ client.beta.threads.delete(thread_id=thread.id)
 Este processo demonstra a utilização da API da OpenAI para criar e gerenciar assistentes e threads, e como apagá-los de forma responsável. Lembre-se de proteger a chave API e gerenciar os dados cuidadosamente, especialmente em ambientes de produção.
 
 <p align="right"><a href="#top-readme">(back to top)</a></p>
-<p align="right"><a href="#top-readme">(back to top)</a></p>
-<p align="right"><a href="#top-readme">(back to top)</a></p>
-<p align="right"><a href="#top-readme">(back to top)</a></p>
+
+# 04. Refatorando o Código e Incluindo Ferramentas: Function Calling
+
+## Criando uma function com a OpenAI
+
+A construção adequada da estrutura de uma função é muito importante para qualquer aplicação em desenvolvimento. Já no contexto da OpenAI, as funções possibilitam estabelecer comunicações entre nossa aplicação e APIs de terceiros, assegurando uma interação clara e eficiente entre os sistemas. Entender e criar essas estruturas é essencial, mas pode ser um processo trabalhoso, especialmente à medida que as aplicações crescem em complexidade.
+
+Durante nosso curso, implementamos o processo de algumas das estruturas de funções manualmente. Embora esta abordagem tenha seu valor didático, existem métodos mais eficientes, especialmente quando já se tem uma compreensão básica do processo.
+
+E se houvesse uma maneira de simplificar e acelerar esse processo? A OpenAI oferece uma alternativa para isso! Em vez de definir cada detalhe manualmente, você pode utilizar a própria OpenAI para gerar a estrutura de funções desejada. Utilizando o [Playground da OpenAI](https://platform.openai.com/playground/chat?model=gpt-4), ou a API diretamente, basta fornecer a descrição e os parâmetros desejados e obter a estrutura correspondente. Confira o passo a passo:
+
+1. **No "System" do Playground da OpenAI (ou via API) insira:**
+
+`Você é um gerador de estrutura de chamada do recurso de function calling para a API do GPT. Você receberá a descrição de uma função e deve escrever o código da estrutura da função seguindo o mesmo padrão do exemplo a seguir.`
+
+### Exemplo
+
+```json
+"functions": [
+    {
+      "name": "obtem_clima",
+      "description": "Obtem o clima em uma determinada localização",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "description": "A cidade e o estado, ex. São Paulo, SP"
+          },
+          "unit": {
+            "type": "string",
+            "enum": ["celsius", "fahrenheit"]
+          }
+        },
+        "required": ["location"]
+      }
+    }
+  ]
+```
+
+2. **No "User" insira a descrição desejada, por exemplo**:
+
+`Valida um cupom devolvendo true se ainda estiver dentro da validade e for um código válido de cupom, false caso contrário. valida_cupom(codigo: string, validade: string)`
+
+3. **A OpenAI gerará a estrutura de função correspondente**:
+
+```json
+"functions": [
+    {
+      "name": "valida_cupom",
+      "description": "Valida um cupom devolvendo true se ainda estiver dentro da validade e for um código válido de cupom, false caso contrário",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "codigo": {
+            "type": "string",
+            "description": "O código do cupom a ser validado"
+          },
+          "validade": {
+            "type": "string",
+            "description": "A data de validade do cupom"
+          }
+        },
+        "required": ["codigo", "validade"]
+      }
+    }
+  ]
+```
+
+Em resumo, com o poder da OpenAI, podemos simplificar e otimizar a maneira como criamos e trabalhamos com estruturas de funções. Este método não só economiza tempo mas também garante precisão e consistência.
+
+Para experimentar por conta própria, visite o [Playground da OpenAI](https://platform.openai.com/playground/chat?model=gpt-4).
+
+Para aprender mais, você pode acessar a [documentação da OpenAI sobre Function Calling](https://platform.openai.com/docs/guides/function-calling)!
+
 <p align="right"><a href="#top-readme">(back to top)</a></p>
